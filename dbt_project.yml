@@ -17,6 +17,4 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   ginos_pizza:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+      +materialized: table

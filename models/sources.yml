@@ -1,0 +1,7 @@
+sources:
+  - name: pos_system
+    database: test_db
+    schema: assessment
+    tables:
+      - name: customers
+      - name: pizza_sales
