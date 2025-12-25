@@ -10,9 +10,9 @@ with customers as (
         , date_of_birth
     from {{ ref('stg_customers') }}
 
-),
+)
 
-enriched as (
+, enriched as (
 
     select
           *
@@ -32,9 +32,9 @@ enriched as (
           end as age_group
     from customers
 
-),
+)
 
-generate_sk as (
+, generate_sk as (
 
     select
         {{ dbt_utils.generate_surrogate_key(['customer_id']) }} as sk_customer
