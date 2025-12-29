@@ -1,10 +1,11 @@
 with pizzas as (
 
     select
+        distinct
           pizza_id
-        , pizza_name
-        , pizza_size
-        , pizza_category
+        , trim(pizza_name) as pizza_name
+        , trim(pizza_size) as pizza_size
+        , trim(pizza_category) as pizza_category
     from {{ ref('stg_sales') }}
 
 )
@@ -20,3 +21,4 @@ with pizzas as (
 
 select *
 from generate_sk
+
