@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: int_time
+    description: "Intermediate time dimension that defines hours of the day and their corresponding day periods."
+
+    columns:
+      - name: sk_time
+        description: "Surrogate key generated from the hour of the day."
+        data_type: varchar
+
+      - name: hour
+        description: "Hour of the day in 24-hour format (0–23)."
+        data_type: number
+
+      - name: day_period
+        description: "Categorization of the hour into a business-friendly time period (morning, lunch, afternoon, dinner, late_night)."
+        data_type: varchar

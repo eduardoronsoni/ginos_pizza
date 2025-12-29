@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: int_dates
+    description: >
+      Calendar dimension generated using a date spine. Contains one row per day
+      with derived date attributes and weekend flag.
+
+    columns:
+      - name: sk_date
+        description: 'Surrogate key generated from date'
+        data_type: varchar
+        tests:
+          - not_null
+          - unique
+
+      - name: date
+        description: 'Calendar date'
+        data_type: date
+        tests:
+          - not_null
+          - unique
+
+      - name: year
+        description: 'Calendar year'
+        data_type: number
+
+      - name: month
+        description: 'Calendar month number'
+        data_type: number
+
+      - name: month_name
+        description: 'Month short name'
+        data_type: varchar
+
+      - name: day
+        description: 'Day of month'
+        data_type: number
+
+      - name: day_of_week
+        description: 'Day of week (Snowflake: 1 = Sunday, 7 = Saturday)'
+        data_type: number
+
+      - name: week_of_year
+        description: 'Week number in the year'
+        data_type: number
+
+      - name: day_of_year
+        description: 'Day number within the year'
+        data_type: number
+
+      - name: is_weekend
+        description: 'Flag indicating whether the date falls on a weekend'
+        data_type: boolean

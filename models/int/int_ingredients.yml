@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: int_ingredients
+    description: "Intermediate model that extracts and normalizes individual pizza ingredients from sales data."
+
+    columns:
+      - name: sk_ingredient
+        description: "Surrogate key generated from ingredient name."
+        data_type: varchar
+        tests:
+          - not_null
+          - unique
+
+      - name: ingredient_name
+        description: "Normalized ingredient name extracted from pizza ingredients list."
+        data_type: varchar
+        tests:
+          - not_null

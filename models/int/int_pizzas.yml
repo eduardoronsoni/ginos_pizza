@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: int_pizzas
+    description: "Intermediate model that defines the pizza entity with normalized attributes and surrogate key."
+
+    columns:
+      - name: sk_pizza
+        description: "Surrogate key generated from pizza_id."
+        data_type: varchar(32)
+        tests:
+          - not_null
+          - unique
+
+      - name: pizza_id
+        description: "Natural identifier of the pizza."
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: pizza_name
+        description: "Pizza name."
+        data_type: varchar
+
+      - name: pizza_size
+        description: "Pizza size (e.g. S, M, L, XL)."
+        data_type: varchar
+
+      - name: pizza_category
+        description: "Pizza category."
+        data_type: varchar
+

@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: int_customers
+    description: >
+      Intermediate customer model that consolidates customers from the customer
+      master table and inferred customers from sales data. Applies enrichment
+      logic such as age and age grouping.
+
+    columns:
+      - name: sk_customer
+        description: 'Surrogate key generated from customer_id'
+        data_type: varchar
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: 'Business identifier for the customer'
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: first_name
+        description: 'Customer first name or default value when inferred'
+        data_type: varchar
+
+      - name: last_name
+        description: 'Customer last name or default value when inferred'
+        data_type: varchar
+
+      - name: name_suffix
+        description: 'Optional name suffix'
+        data_type: varchar
+
+      - name: full_name
+        description: 'Resolved full name or generated name when inferred'
+        data_type: varchar
+
+      - name: gender
+        description: 'Customer gender when available'
+        data_type: varchar
+
+      - name: date_of_birth
+        description: 'Customer date of birth when available'
+        data_type: date
+
+      - name: data_source
+        description: 'Indicates whether the customer comes from the customer table or was inferred from sales'
+        data_type: varchar
+
+      - name: age
+        description: 'Customer age calculated from date_of_birth'
+        data_type: number
+
+      - name: age_group
+        description: 'Age bucket derived from age'
+        data_type: varchar
