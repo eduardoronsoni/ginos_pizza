@@ -10,7 +10,6 @@ clock as (
 
     select
         hour
-        , lpad(hour::varchar, 2, '0') || ':00' as time_label
         , case
             when hour between 6  and 10 then 'morning'
             when hour between 11 and 14 then 'lunch'
