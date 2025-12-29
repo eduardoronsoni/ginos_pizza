@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: 'Staging table for customer data from POS system'
+
+    columns:
+      - name: id
+        description: 'Unique customer identifier'
+        data_type: varchar
+        tests:
+          - not_null
+          - unique
+          
+      - name: first_name
+        description: 'Customer first name'
+        data_type: varchar
+        tests:
+          - not_null
+          
+      - name: last_name
+        description: 'Customer last name'
+        data_type: varchar
+          
+      - name: name_suffix
+        description: 'Name suffix (optional)'
+        data_type: varchar
+              
+      - name: full_name
+        description: 'Concatenated full name'
+        data_type: varchar
+          
+      - name: gender
+        description: 'Customer gender'
+        data_type: varchar(7)
+        tests:
+          - accepted_values:
+              values: ['Male', 'Female', 'Unknown']
+              
+      - name: date_of_birth
+        description: 'Date of birth'
+        data_type: date
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: "'1900-01-01'"
+              max_value: "current_date()"
+              config:
+                severity: warn
+
+          - not_null:
+              config:
+                severity: warn

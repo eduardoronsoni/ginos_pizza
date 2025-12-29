@@ -12,4 +12,4 @@ select
     , pizza_category
     , pizza_ingredients
     , pizza_name
-from {{ source('pos_system', 'pizza_sales')}}
+from {{ source('pos_system', 'pizza_sales') }}

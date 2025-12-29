@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: stg_sales
+    description: 'Staging table for pizza sales data from POS system'
+
+    columns:
+      - name: order_details_id
+        description: 'Unique identifier for each order line'
+        data_type: varchar
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        description: 'Order identifier'
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: 'Customer identifier'
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: pizza_id
+        description: 'Pizza identifier'
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: qty
+        description: 'Quantity of pizzas sold'
+        data_type: number
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              max_value: 100
+              config:
+                severity: warn
+
+      - name: order_date
+        description: 'Date when the order was placed'
+        data_type: date
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: "'2025-01-01'"
+              max_value: "current_date()"
+              config:
+                severity: warn
+
+      - name: order_time
+        description: 'Time when the order was placed'
+        data_type: time
+        tests:
+          - not_null
+
+      - name: unit_price
+        description: 'Unit price of the pizza'
+        data_type: float
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 1000
+              config:
+                severity: warn
+
+      - name: total_price
+        description: 'Total price for the order line'
+        data_type: float
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 10000
+              config:
+                severity: warn
+
+      - name: pizza_size
+        description: 'Pizza size (e.g. S, M, L, XL, XXL)'
+        data_type: varchar
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['S', 'M', 'L', 'XL', 'XXL']
+
+      - name: pizza_category
+        description: 'Pizza category (e.g. Classic, Veggie, Chicken)'
+        data_type: varchar
+
+      - name: pizza_ingredients
+        description: 'List of pizza ingredients'
+        data_type: varchar
+
+      - name: pizza_name
+        description: 'Pizza name'
+        data_type: varchar
