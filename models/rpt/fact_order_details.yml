@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: fact_order_details
+    description: 'Fact table at order item level, representing individual pizza sales with links to customer, date, time and pizza dimensions.'
+
+    columns:
+      - name: sk_order_detail
+        description: 'Surrogate key for each order item.'
+        data_type: varchar
+        tests:
+          - not_null
+          - unique
+
+      - name: sk_order
+        description: 'Surrogate key representing the order.'
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: fk_customer
+        description: 'Foreign key to dim_customers.'
+        data_type: varchar
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: sk_customer
+
+      - name: fk_date
+        description: 'Foreign key to dim_dates.'
+        data_type: varchar
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: sk_date
+
+      - name: fk_time
+        description: 'Foreign key to dim_time.'
+        data_type: varchar
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_time')
+              field: sk_time
+
+      - name: fk_pizza
+        description: 'Foreign key to dim_pizzas.'
+        data_type: varchar
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_pizzas')
+              field: sk_pizza
+
+      - name: qty
+        description: 'Quantity of pizzas sold in the order item.'
+        data_type: number
+        tests:
+          - not_null
+
+      - name: unit_price
+        description: 'Unit price of the pizza.'
+        data_type: float
+        tests:
+          - not_null
+
+      - name: total_price
+        description: 'Total price for the order item.'
+        data_type: float
+        tests:
+          - not_null

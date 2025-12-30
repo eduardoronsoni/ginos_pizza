@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: 'Customer dimension containing enriched customer attributes derived from sales and customer source data.'
+
+    columns:
+      - name: sk_customer
+        description: 'Surrogate key representing the customer.'
+        data_type: varchar
+
+      - name: customer_id
+        description: 'Natural identifier of the customer.'
+        data_type: varchar
+
+      - name: first_name
+        description: 'Customer first name.'
+        data_type: varchar
+
+      - name: last_name
+        description: 'Customer last name.'
+        data_type: varchar
+
+      - name: name_suffix
+        description: 'Optional name suffix.'
+        data_type: varchar
+
+      - name: full_name
+        description: 'Concatenated full name of the customer.'
+        data_type: varchar
+
+      - name: gender
+        description: 'Customer gender.'
+        data_type: varchar
+
+      - name: date_of_birth
+        description: 'Customer date of birth.'
+        data_type: date
+
+      - name: data_source
+        description: 'Indicates whether the customer record was sourced from the customer table or inferred from sales.'
+        data_type: varchar
+
+      - name: age
+        description: 'Customer age calculated from date of birth.'
+        data_type: number
+
+      - name: age_group
+        description: 'Age group bucket derived from customer age.'
+        data_type: varchar

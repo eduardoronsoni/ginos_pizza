@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: dim_ingredients
+    description: 'Ingredient dimension containing the unique list of pizza ingredients derived from sales data.'
+
+    columns:
+      - name: sk_ingredient
+        description: 'Surrogate key representing the ingredient.'
+        data_type: varchar
+
+      - name: ingredient_name
+        description: 'Name of the ingredient.'
+        data_type: varchar

@@ -17,7 +17,7 @@ with all_customers_from_sales as (
         , gender
         , date_of_birth
     from {{ ref('stg_customers') }}
-    
+
 )
 
 , base_customers as (
@@ -60,7 +60,7 @@ with all_customers_from_sales as (
                 then '45_54'
             when datediff(year, date_of_birth, current_date) >= 55
                 then '55_plus'
-            else 'unknown_age'  -- For clients not on the customers source
+            else 'Unknown_age'  -- For clients not on the customers source
         end as age_group,
     from base_customers
 )

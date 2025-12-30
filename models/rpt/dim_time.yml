@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_time
+    description: 'Time dimension representing hours of the day and their corresponding business time periods.'
+
+    columns:
+      - name: sk_time
+        description: 'Surrogate key representing the hour of the day.'
+        data_type: varchar
+
+      - name: hour
+        description: 'Hour of the day in 24-hour format (0–23).'
+        data_type: number
+
+      - name: day_period
+        description: 'Business-friendly categorization of the hour (morning, lunch, afternoon, dinner, late_night).'
+        data_type: varchar

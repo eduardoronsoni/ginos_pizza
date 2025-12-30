@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_pizzas
+    description: 'Pizza dimension containing unique pizzas and their core attributes derived from sales data.'
+
+    columns:
+      - name: sk_pizza
+        description: 'Surrogate key representing the pizza.'
+        data_type: varchar
+
+      - name: pizza_id
+        description: 'Natural identifier of the pizza.'
+        data_type: varchar
+
+      - name: pizza_name
+        description: 'Name of the pizza.'
+        data_type: varchar
+
+      - name: pizza_size
+        description: 'Size of the pizza.'
+        data_type: varchar
+
+      - name: pizza_category
+        description: 'Category of the pizza.'
+        data_type: varchar
