@@ -28,5 +28,19 @@ with base as (
 
 )
 
+, with_keys as (
+
+    select
+        pizzas.sk_pizza              as fk_pizza
+        , ingredients.sk_ingredient  as fk_ingredient
+    from deduplicated d
+    left join {{ ref('dim_pizzas') }} pizzas
+        on pizzas.pizza_id = d.pizza_id
+    left join {{ ref('dim_ingredients') }} ingredients
+        on ingredients.ingredient_name = d.ingredient_name
+)
+
 select *
-from deduplicated
+from with_keys
+where fk_pizza is not null
+  and fk_ingredient is not null

@@ -2,23 +2,21 @@ version: 2
 
 models:
   - name: bridge_pizza_ingredients
-    description: "Bridge table representing the many-to-many relationship between pizzas and ingredients."
+    description: 'Bridge table relating pizzas and their ingredients using surrogate keys'
+
+    columns:
+      - name: fk_pizza
+        description: 'Foreign key to dim_pizzas'
+        tests:
+          - not_null
+
+      - name: fk_ingredient
+        description: 'Foreign key to dim_ingredients'
+        tests:
+          - not_null
 
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
-            - pizza_id
-            - ingredient_name
-
-    columns:
-      - name: pizza_id
-        description: "Identifier of the pizza."
-        data_type: varchar
-        tests:
-          - not_null
-
-      - name: ingredient_name
-        description: "Name of the ingredient used in the pizza."
-        data_type: varchar
-        tests:
-          - not_null
+            - fk_pizza
+            - fk_ingredient
