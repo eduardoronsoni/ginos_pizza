@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: int_order_details
+    description: >
+      Intermediate model that prepares order-level sales data by generating
+      surrogate keys and combining date and time into a single timestamp.
+
+    columns:
+      - name: sk_order_detail
+        description: "Surrogate key generated from order_details_id."
+        data_type: varchar
+        tests:
+          - not_null
+          - unique
+
+      - name: sk_order
+        description: "Surrogate key generated from order_id."
+        data_type: varchar
+
+      - name: order_details_id
+        description: "Natural identifier for the order line item."
+        data_type: varchar
+
+      - name: order_id
+        description: "Natural identifier of the order."
+        data_type: varchar
+
+      - name: customer_id
+        description: "Identifier of the customer who placed the order."
+        data_type: varchar
+
+      - name: pizza_id
+        description: "Identifier of the pizza sold."
+        data_type: varchar
+
+      - name: qty
+        description: "Quantity of pizzas sold in the order line."
+        data_type: number
+
+      - name: order_date
+        description: "Date when the order was placed."
+        data_type: date
+
+      - name: order_time
+        description: "Time when the order was placed."
+        data_type: time
+
+      - name: order_datetime
+        description: "Timestamp combining order_date and order_time."
+        data_type: timestamp_ntz
+
+      - name: unit_price
+        description: "Unit price of the pizza at the time of sale."
+        data_type: float
+
+      - name: total_price
+        description: "Total price for the order line (qty × unit_price)."
+        data_type: float
