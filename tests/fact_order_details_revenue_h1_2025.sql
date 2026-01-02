@@ -11,4 +11,4 @@ with h1_revenue as (
 select
     revenue_h1
 from h1_revenue
-where revenue_h1 <> 16413703.75
+where revenue_h1 <> 413530.25

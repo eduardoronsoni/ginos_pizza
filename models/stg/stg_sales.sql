@@ -13,3 +13,4 @@ select
     , pizza_ingredients
     , pizza_name
 from {{ source('pos_system', 'pizza_sales') }}
+where order_id <> '4232'
